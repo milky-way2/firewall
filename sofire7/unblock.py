@@ -18,3 +18,7 @@ def main():
 
 def UnblockIT(ipaddr):
     os.popen("iptables -D INPUT -s {} -j DROP".format(ipaddr))
+
+
+if __name__=="__main__":
+    main()
