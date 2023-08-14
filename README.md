@@ -3,12 +3,13 @@ To use this just follow below steps:
 1) git clone https://github.com/milky-way2/firewall.git
 2) cd firewall
 3) cd sofire7
-4) ifconfig and copy {target IP}
-5) ping {target IP}
-6) now run "sudo python3 basic_firewall.py" to start this firewall
-7) for help run with -h  [-help]
-8) To only unblock a previously blocked IP run with -u [--unblock] {blocked_IP}
-9) To stop press "CTRL+C"
+4) sudo pip install -r requirements.txt
+5) ifconfig and copy {target IP}
+6) ping {target IP}
+7) now run "sudo python3 basic_firewall.py" to start this firewall
+8) for help run with -h  [-help]
+9) To only unblock a previously blocked IP run with -u [--unblock] {blocked_IP}
+10) To stop press "CTRL+C"
    
 __A Concise Definition:__ A firewall is a security policy enforcement point positioned between a web application and the client endpoint. This functionality can be implemented in software or hardware, running in an appliance device, or in a typical server running a common operating system. It may be a stand-alone device or integrated into other network components. *(Source: [PCI DSS IS 6.6](https://www.pcisecuritystandards.org/documents/information_supplement_6.6.pdf))*
 
