@@ -1,4 +1,4 @@
-![Alt Text]([image_url](https://github.com/milky-way2/firewall/blob/main/sofire7/banner.png))
+![Banner](https://github.com/milky-way2/firewall/raw/main/sofire7/banner.png)
 To use this just follow below steps:
 !(you need root or admin access of the system for use this project)
 1) git clone https://github.com/milky-way2/firewall.git
