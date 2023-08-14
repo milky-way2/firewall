@@ -1,4 +1,5 @@
-To use this just clone this repo and goto sofire7 directory and follow beloow step:
+To use this just follow below steps:
+!(you need root or admin access of the system for use this project)
 1) git clone https://github.com/milky-way2/firewall.git
 2) cd firewall
 3) cd sofire7
