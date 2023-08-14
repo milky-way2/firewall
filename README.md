@@ -1,16 +1,8 @@
-# Awesome WAF [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg "Awesome")](https://github.com/0xinfection/awesome-waf)
-Everything about web application firewalls (WAFs) from a security perspective. 🔥
->
-> __Foreword:__ This was originally my own collection on WAFs. I am open-sourcing it in the hope that it will be useful for pentesters and researchers out there.As the saying goes, "the community just learns from each other."
-
 ![Main Logo](images/how-wafs-work.png 'How wafs work')
 
 __A Concise Definition:__ A firewall is a security policy enforcement point positioned between a web application and the client endpoint. This functionality can be implemented in software or hardware, running in an appliance device, or in a typical server running a common operating system. It may be a stand-alone device or integrated into other network components. *(Source: [PCI DSS IS 6.6](https://www.pcisecuritystandards.org/documents/information_supplement_6.6.pdf))*
 
 A web-application firewall sits between a user and a webapp and is tasked to prevent any malicious activity from reaching the webapp. A WAF either filters out the malicious part of the request or just simply blocks it.
-
-Feel free to [contribute](CONTRIBUTING.md).
-
 ### Contents:
 - [Introduction](#introduction)
     - [How WAFs Work](#how-wafs-work)
@@ -72,7 +64,6 @@ To identify WAFs, we need to (dummy) provoke it.
 10. Drop Action Technique - Send a raw crafted FIN/RST packet to server and identify response.
     > __Tip:__ This method could be easily achieved with tools like [HPing3](http://www.hping.org) or [Scapy](https://scapy.net).
 11. Side Channel Attacks - Examine the timing behaviour of the request and response content.
-    > __Tip:__ More details can be found in a [blogpost here](https://0xinfection.github.io/posts/fingerprinting-wafs-side-channel/).
 
 ## WAF Fingerprints
 Wanna fingerprint WAFs? Lets see how.
@@ -3963,4 +3954,4 @@ User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
 - [Building Your Own WAF as a Service and Forgetting about False Positives](presentations/Building%20Your%20Own%20WAF%20as%20a%20Service%20and%20Forgetting%20about%20False%20Positives.pdf) - A presentation about how to build a hybrid mode waf that can work both in an out-of-band manner as well as inline to reduce false positives and latency [Auscert2019](https://conference.auscert.org.au/).
 
 ## Credits & License:
-Initial fingerprint compilation and bypasses were put together by [Pinaki](https://twitter.com/0xInfection) [(0xInfection)](https://github.com/0xinfection), but now it largely remains as a community supported repository. Awesome-WAF is licensed under the [Apache 2.0 License](LICENSE). 
+sofire7 is licensed under the [Apache 2.0 License](LICENSE). 
