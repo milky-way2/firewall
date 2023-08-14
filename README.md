@@ -1,3 +1,10 @@
+To use this just clone this repo and goto sofire7 directory and follow beloow step:
+1) atfirst run "ifconfig"
+2) ping {target IP}
+3) now run "sudo python3 basic_firewall.py" to start this firewall
+4) for help run with -h  [-help]
+5) To only unblock a previously blocked IP run with -u [--unblock] {blocked_IP}
+   
 __A Concise Definition:__ A firewall is a security policy enforcement point positioned between a web application and the client endpoint. This functionality can be implemented in software or hardware, running in an appliance device, or in a typical server running a common operating system. It may be a stand-alone device or integrated into other network components. *(Source: [PCI DSS IS 6.6](https://www.pcisecuritystandards.org/documents/information_supplement_6.6.pdf))*
 
 A web-application firewall sits between a user and a webapp and is tasked to prevent any malicious activity from reaching the webapp. A WAF either filters out the malicious part of the request or just simply blocks it.
