@@ -67,7 +67,6 @@ def BlockIT(ipaddr):
         UnblockIT(ipaddr)  # will unblock the blocked ip after 5 sec
 
 
-
 # unblocking the ip's after 5 sec delay
 def UnblockIT(ipaddr):
     #    time.sleep(5)
