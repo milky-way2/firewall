@@ -1,22 +1,26 @@
 #!/usr/bin/env python3
-from datetime import datetime
-import socket, struct, os
+import socket
+import struct
+import os
 from pyfiglet import Figlet
-import threading
+
+# import threading
 import time
 import sys
-flag=False
+
+flag = False
+
 
 def main():
-    #show banner of project
+    # show banner of project
     global flag
-    if  not flag:
+    if not flag:
         ShowBanner()
-        flag=True
-    #creating socket
+        flag = True
+    # creating socket
     s = socket.socket(socket.PF_PACKET, socket.SOCK_RAW, 8)
     dict = {}
-    if len(sys.argv) in (2,3):
+    if len(sys.argv) in (2, 3):
         if sys.argv[1] == "-u" or sys.argv[1] == "--unblock":
             UnblockIT(sys.argv[2])
             sys.exit("bye")
@@ -28,7 +32,7 @@ def main():
             print("Wrong argument")
     while True:
         try:
-            pkt = s.recvfrom(65536) #declaring the bufer size
+            pkt = s.recvfrom(65536)  # declaring the bufer size
             ip_header = pkt[0][14:34]
             ip_hdr = struct.unpack("!8sB3s4s4s", ip_header)
             IP = socket.inet_ntoa(ip_hdr[3])
@@ -44,57 +48,61 @@ def main():
                 if len(dict[IP]) == 5:
                     print("This {} address was blocked".format(IP))
                     BlockIT(IP)
-                    UnblockIT(IP)  #will unblock the blocked ip after 5 sec
+            #                    UnblockIT(IP)  # will unblock the blocked ip after 5 sec
             else:
                 dict[IP] = []
         except KeyboardInterrupt:
             sys.exit("\tBye")
             break
-    
 
 
-#blocking the ip after 3 ping packet received
+# blocking the ip after 3 ping packet received
 def BlockIT(ipaddr):
     os.popen("iptables -A INPUT -s {} -j DROP".format(ipaddr))
     with open("blocked_ips.txt", "a") as file:
         file.write(ipaddr + "\n")
     print("Blocked IP address:", ipaddr)
+    choice = input("are you want to UnBlock the blocked ip (y/n)").lower()
+    if choice == "y":
+        UnblockIT(ipaddr)  # will unblock the blocked ip after 5 sec
 
 
- #unblocking the ip's after 5 sec delay   
+
+# unblocking the ip's after 5 sec delay
 def UnblockIT(ipaddr):
-    time.sleep(5)
+    #    time.sleep(5)
+    print(f"Unblocking {ipaddr}", end="")
+    for _ in range(5):
+        print(".", end="", flush=True)
+        time.sleep(1)
+    os.popen("iptables -D INPUT -s {} -j DROP".format(ipaddr))
     blocked_ips = set()  # Create a set for blocked IPs
-    # os.popen("iptables -D INPUT -s {} -j DROP".format(ipaddr))
-
-
-        # Create a separate thread for unblocking the IP
-    unblock_thread = threading.Thread(target=lambda: os.popen("iptables -D INPUT -s {} -j DROP".format(ipaddr)))
-    unblock_thread.start()
-
-
     with open("blocked_ips.txt", "r") as file:
         blocked_ips = set(ip.strip() for ip in file.readlines())  # Read IPs into a set
         blocked_ips.discard(ipaddr)  # Remove the specific IP from the set
     with open("blocked_ips.txt", "w") as file:
         for ip in blocked_ips:
             file.write(ip + "\n")
-    print("UnBlocked IP address:", ipaddr)
+    print("\nUnBlocked IP address:", ipaddr)
+    if len(sys.argv) == 1:
+        time.sleep(3)
+        BlockIT(ipaddr)
 
 
-#project banner show
+# project banner show
 def ShowBanner():
     figlet = Figlet()
     figlet.setFont(font="banner3-D")
     print(figlet.renderText("SoFire7"))
     figlet.setFont(font="slant")
     print(figlet.renderText("by Soham"))
-    fs=lambda: (print("Starting firewall",end=""), [print(".", end="",flush=True) or time.sleep(1) for _ in range(5)])
-    fs()
+    print("Starting firewall", end="")
+    for _ in range(5):
+        print(".", end="", flush=True)
+        time.sleep(1)
     print("\nFirewall started")
 
 
-
-if __name__=="__main__":
-    #calling main
+if __name__ == "__main__":
+    # calling main
     main()
