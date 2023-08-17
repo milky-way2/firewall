@@ -6,15 +6,10 @@ from pyfiglet import Figlet
 import time
 import sys
 
-flag = False
-
 
 def main():
     # show banner of project
-    global flag
-    if not flag:
-        ShowBanner()
-        flag = True
+    ShowBanner()
     # creating socket
     s = socket.socket(socket.PF_PACKET, socket.SOCK_RAW, 8)
     dict = {}
