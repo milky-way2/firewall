@@ -3,8 +3,6 @@ import socket
 import struct
 import os
 from pyfiglet import Figlet
-
-# import threading
 import time
 import sys
 
